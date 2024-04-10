@@ -1,0 +1,24 @@
+@use '../base/variables'
+@use '../base/utilities'
+@use 'buttons'
+
+.container-popup
+    position: absolute
+    width: 60%
+    max-width: 500px
+    top: -20px
+    padding: 15px 0
+    background: variables.$secondary-bg-color
+    border: 1px solid variables.$bg-color
+    border-radius: 10px
+    @include utilities.center-elements
+    flex-direction: column
+    left: 50%
+    right: 50%
+    transform: translate(-50%, 50%) scale(1)
+    animation: popup-slide 1s linear infinite
+    transition: .5s
+    box-shadow: 0 0 10px variables.$primary-color
+
+    &.hidden
+        transform: translate(-50%, -100%)scale(0.2)

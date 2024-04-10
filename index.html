@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notes</title>
+
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <!-- Form area -->
+        <div class="container-form">
+            <h1>Dictionary</h1>
+            <form class="form">
+                <div class="form-box">
+                    <label for="word">Insert your word:</label>
+                    <input type="text" id="word" class="form-box-word">
+                </div>
+
+                <button type="submit" class="btn formButton">Send</button>
+            </form>
+
+            <!-- All the results will be shown here -->
+        </div>
+        <div class="container-results">
+            <h2 class="title">Word</h2>
+
+            <select class="container-results-select"></select>
+            <button class="btn load-results">GO</button>
+
+            <h2>Word Class: <span class="word-class">Noum</span></h2>
+
+            <div class="select-results"></div>
+        </div>
+    </div>
+
+    <div class="container-popup hidden">
+        <p class="container-popup-text">Please, make sure you have filled both fields</p>
+        <button type="button" class="btn close-popup">Ok</button>
+    </div>
+
+    <!-- Axios -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <!-- Model Imports -->
+    <script src="js/Model/Word.model.js"></script>
+    <!-- Services Imports -->
+    <script src="js/Services/Word.services.js"></script>
+    <!-- View Imports -->
+    <script src="js/View/Render.view.js"></script>
+    <!-- Controller Imports -->
+    <script src="js/Controller/Word.controller.js"></script>
+    <!-- Controller Dictionary API Import -->
+    <script src="js/Controller/DictionaryAPI.js"></script>
+
+    <!-- Main JavaScript App -->
+    <script src="./js/app.js"></script>
+
+    <!-- Ion Icons Imports -->
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</body>
+
+</html>

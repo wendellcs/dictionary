@@ -1,0 +1,20 @@
+@use 'variables'
+
+@mixin center-elements
+    display: flex
+    justify-content: center
+    align-items: center
+
+@mixin container-style
+    width: 300px
+    background: variables.$secondary-bg-color
+    padding: 40px 15px 25px 15px
+    border-radius: 20px
+
+@keyframes slide-popup
+    from
+        opacity: 0
+        transform: translateY(-100px)
+    to
+        opacity: 1
+        transform: translateY(0)
