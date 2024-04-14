@@ -176,5 +176,13 @@ body {
   border-radius: 10px;
   text-align: center;
 }
+.container-results .title {
+  margin: 20px 0;
+}
+.container-results-select {
+  width: 150px;
+  height: 40px;
+  margin: 20px 0;
+}
 
 /*# sourceMappingURL=style.css.map */

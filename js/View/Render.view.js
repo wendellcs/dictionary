@@ -15,8 +15,10 @@ class RenderView {
             const title = this.containerResults.querySelector('.title')
             const select = this.containerResults.querySelector('.container-results-select')
             const wordClass = this.containerResults.querySelector('.word-class')
-            const results = this.containerResults.querySelector('.select-results')
-            const btnLoadResults = this.containerResults.querySelector('load-results')
+
+            this.words = words
+            this.select = select
+            this.index = index
 
             select.textContent = ''
             const classes = words[index].wordClasses.map((_class) => _class)
@@ -37,44 +39,52 @@ class RenderView {
 
             // Update the definitions based on the selected word
             select.addEventListener('change', () => {
-                const _class = select.value
-                const wordClassIndex = []
+                this.loadDefinitions()
+            })
 
-                words[index].wordClasses.forEach((_wordClass, i) => {
-                    if (_wordClass == _class) {
-                        wordClassIndex.push(i)
-                    }
+            this.loadDefinitions()
+        }
+    }
+
+    loadDefinitions() {
+        const results = this.containerResults.querySelector('.select-results')
+        const _class = this.select.value
+        const wordClassIndex = []
+
+        this.words[this.index].wordClasses.forEach((_wordClass, i) => {
+            if (_wordClass == _class) {
+                wordClassIndex.push(i)
+            }
+        })
+
+        // Verify whether there are multiple definitions for the same word
+        if (wordClassIndex.length > 1) {
+            results.textContent = ''
+            const multipleResults = []
+
+            wordClassIndex.forEach(i => {
+                multipleResults.push(this.words[this.index].definitions[i])
+            })
+
+            multipleResults.forEach(result => {
+                result.forEach(def => {
+                    const p = document.createElement('p')
+                    p.className = 'definition'
+                    p.textContent = def.definition
+                    results.appendChild(p)
                 })
+            })
+        } else {
+            results.textContent = ''
+            const toBeRenderedDefinition = this.words[this.index].definitions[wordClassIndex]
 
-                // Verify whether there are multiple definitions for the same word
-                if (wordClassIndex.length > 1) {
-                    results.textContent = ''
-                    const multipleResults = []
-
-                    wordClassIndex.forEach(i => {
-                        multipleResults.push(words[index].definitions[i])
-                    })
-
-                    multipleResults.forEach(result => {
-                        result.forEach(def => {
-                            const p = document.createElement('p')
-                            p.className = 'definition'
-                            p.textContent = def.definition
-                            results.appendChild(p)
-                        })
-                    })
-                } else {
-                    results.textContent = ''
-                    const toBeRenderedDefinition = words[index].definitions[wordClassIndex]
-
-                    toBeRenderedDefinition.forEach(definition => {
-                        const p = document.createElement('p')
-                        p.className = 'definition'
-                        p.textContent = definition.definition
-                        results.appendChild(p)
-                    })
-                }
+            toBeRenderedDefinition.forEach(definition => {
+                const p = document.createElement('p')
+                p.className = 'definition'
+                p.textContent = definition.definition
+                results.appendChild(p)
             })
         }
+
     }
 }
