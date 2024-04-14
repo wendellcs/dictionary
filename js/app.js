@@ -18,19 +18,17 @@ const wordController = new WordController(wordServices, renderView)
 
 formElements.form.addEventListener('submit', async (e) => {
     e.preventDefault()
-    const _word = formElements.formInput.value
+    const _word = formElements.formInput.value.trim().toLowerCase()
 
     try {
         const data = await dictionary.getWord(_word)
 
-        console.log(data)
         const word = new WordModel(data)
         wordController.addWord(word)
 
     } catch (err) {
         alert(err.message)
     }
-
 })
 
 

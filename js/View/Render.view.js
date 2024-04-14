@@ -5,6 +5,7 @@ class RenderView {
         }
 
         this.containerResults = containerResults;
+
     }
 
     renderWords(words) {
@@ -12,9 +13,12 @@ class RenderView {
             const index = words.length - 1;
             // this.containerResults.innerHTML = '';
 
+            this.containerResults.classList.remove('hidden')
             const title = this.containerResults.querySelector('.title')
             const select = this.containerResults.querySelector('.container-results-select')
             const wordClass = this.containerResults.querySelector('.word-class')
+
+
 
             this.words = words
             this.select = select
@@ -22,6 +26,7 @@ class RenderView {
 
             select.textContent = ''
             const classes = words[index].wordClasses.map((_class) => _class)
+            title.textContent = words[index].word
             // Remove any repeated word
             const toBeRenderedClasses = classes.filter((_class, i) => {
                 return classes.indexOf(_class) === i
@@ -33,12 +38,14 @@ class RenderView {
                     const option = document.createElement('option');
                     option.value = _class;
                     option.innerText = _class;
+                    option.className = 'option'
                     select.appendChild(option);
                 }
             })
 
             // Update the definitions based on the selected word
             select.addEventListener('change', () => {
+                wordClass.textContent = select.value
                 this.loadDefinitions()
             })
 
