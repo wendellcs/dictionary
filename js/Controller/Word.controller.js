@@ -11,4 +11,13 @@ class WordController {
         this.service.addWord(word)
         this.view.renderWords(this.service.wordList)
     }
+
+    showMore() {
+        this.view.showMore()
+    }
+
+    toggleHistoryMenuVisibility(menu) {
+        if (!menu) throw new Error('The history menu is needed')
+        this.view.toggleHistoryMenuVisibility(menu)
+    }
 }

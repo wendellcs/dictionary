@@ -229,4 +229,68 @@ body {
   background: #333;
 }
 
+.container-history {
+  transform: translateX(-93%);
+  position: fixed;
+  height: 100%;
+  top: 0;
+  border-right: 2px solid #000;
+  background: #446c79;
+  text-align: center;
+  padding: 30px 15px;
+  transition: 0.3s ease-in;
+}
+.container-history.open {
+  transform: translateX(0);
+  width: 250px;
+}
+.container-history.open .open-history {
+  transform: rotate(180deg) scale(1.1);
+}
+.container-history.open .open-history:hover {
+  transform: rotate(180deg) scale(1.1);
+}
+.container-history .open-history {
+  position: absolute;
+  right: -18px;
+  font-size: 30px;
+  background: #00f;
+  border-radius: 50%;
+  cursor: pointer;
+}
+.container-history .open-history:hover {
+  transform: scale(1.1);
+}
+.container-history-title {
+  font-size: 3rem;
+  margin-bottom: 40px;
+}
+.container-history .history {
+  margin: 20px 0;
+}
+.container-history .history-item {
+  font-size: 2.2rem;
+  margin: 10px 0;
+  letter-spacing: 1px;
+  font-weight: bold;
+}
+.container-history .history-item .span-icon {
+  vertical-align: middle;
+}
+.container-history .history-item .span-icon .trash {
+  margin-left: 5px;
+  cursor: pointer;
+  transition: 0.5s;
+}
+.container-history .history-item .span-icon .trash:hover {
+  color: #3e3ebd;
+  transform: scale(1.1);
+}
+.container-history hr {
+  margin: 30px 0;
+}
+.container-history .btn.clear-history {
+  margin-top: 10px;
+}
+
 /*# sourceMappingURL=style.css.map */

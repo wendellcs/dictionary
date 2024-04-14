@@ -119,4 +119,8 @@ class RenderView {
         this.toBeRendered += 5
         this.loadDefinitions()
     }
+
+    toggleHistoryMenuVisibility(menu) {
+        menu.classList.toggle('open')
+    }
 }

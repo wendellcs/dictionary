@@ -7,7 +7,8 @@ const formElements = {
 
 const otherHTMLElements = {
     containerResults: document.querySelector('.container-results'),
-    btnShowMore: document.querySelector('.btn.show-more')
+    btnShowMore: document.querySelector('.btn.show-more'),
+    openHistory: document.querySelector('.open-history')
 }
 
 
@@ -33,7 +34,11 @@ formElements.form.addEventListener('submit', async (e) => {
 })
 
 otherHTMLElements.btnShowMore.addEventListener('click', () => {
-    renderView.showMore()
+    wordController.showMore()
+})
+
+otherHTMLElements.openHistory.addEventListener('click', () => {
+    wordController.toggleHistoryMenuVisibility(document.querySelector('.container-history'))
 })
 
 
