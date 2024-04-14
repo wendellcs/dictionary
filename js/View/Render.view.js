@@ -5,7 +5,7 @@ class RenderView {
         }
 
         this.containerResults = containerResults;
-
+        this.toBeRendered = 5
     }
 
     renderWords(words) {
@@ -46,6 +46,7 @@ class RenderView {
             // Update the definitions based on the selected word
             select.addEventListener('change', () => {
                 wordClass.textContent = select.value
+                this.toBeRendered = 5
                 this.loadDefinitions()
             })
 
@@ -57,6 +58,7 @@ class RenderView {
         const results = this.containerResults.querySelector('.select-results')
         const _class = this.select.value
         const wordClassIndex = []
+        const btnShowMore = this.containerResults.querySelector('.btn.show-more')
 
         this.words[this.index].wordClasses.forEach((_wordClass, i) => {
             if (_wordClass == _class) {
@@ -73,25 +75,48 @@ class RenderView {
                 multipleResults.push(this.words[this.index].definitions[i])
             })
 
-            multipleResults.forEach(result => {
-                result.forEach(def => {
+            const rendering = []
+            multipleResults.map(obj => { obj.map(def => { rendering.push(def) }) })
+
+            if (rendering.length > 5) {
+                btnShowMore.classList.remove('hidden')
+            }
+
+            for (let i = 0; i < this.toBeRendered; i++) {
+                if (rendering[i]) {
                     const p = document.createElement('p')
                     p.className = 'definition'
-                    p.textContent = def.definition
+                    p.textContent = rendering[i].definition
                     results.appendChild(p)
-                })
-            })
+                } else {
+                    btnShowMore.classList.add('hidden')
+                }
+            }
+
         } else {
             results.textContent = ''
             const toBeRenderedDefinition = this.words[this.index].definitions[wordClassIndex]
 
-            toBeRenderedDefinition.forEach(definition => {
-                const p = document.createElement('p')
-                p.className = 'definition'
-                p.textContent = definition.definition
-                results.appendChild(p)
-            })
+            if (toBeRenderedDefinition.length > 5) {
+                btnShowMore.classList.remove('hidden')
+            }
+
+            for (let i = 0; i < this.toBeRendered; i++) {
+                if (toBeRenderedDefinition[i]) {
+                    const p = document.createElement('p')
+                    p.className = 'definition'
+                    p.textContent = toBeRenderedDefinition[i].definition
+                    results.appendChild(p)
+                } else {
+                    btnShowMore.classList.add('hidden')
+                }
+            }
         }
 
+    }
+
+    showMore() {
+        this.toBeRendered += 5
+        this.loadDefinitions()
     }
 }

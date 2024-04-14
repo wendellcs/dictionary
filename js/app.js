@@ -6,7 +6,8 @@ const formElements = {
 }
 
 const otherHTMLElements = {
-    containerResults: document.querySelector('.container-results')
+    containerResults: document.querySelector('.container-results'),
+    btnShowMore: document.querySelector('.btn.show-more')
 }
 
 
@@ -29,6 +30,10 @@ formElements.form.addEventListener('submit', async (e) => {
     } catch (err) {
         alert(err.message)
     }
+})
+
+otherHTMLElements.btnShowMore.addEventListener('click', () => {
+    renderView.showMore()
 })
 
 

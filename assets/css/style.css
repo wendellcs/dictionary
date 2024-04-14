@@ -86,11 +86,14 @@ body {
 }
 .btn.show-more {
   margin: 0 auto;
-  margin-top: 20px;
+  margin-top: 50px;
   font-size: 1.3rem;
   border: none;
   border-radius: 15px;
   padding: 5px 10px;
+}
+.btn.show-more.hidden {
+  display: none;
 }
 .btn.show-more:hover {
   color: #ebe8e8;
