@@ -116,4 +116,22 @@ class RenderView {
     toggleHistoryMenuVisibility(menu) {
         menu.classList.toggle('open')
     }
+
+    renderHistory(words) {
+        const history = document.querySelector('.history')
+        history.textContent = ''
+
+        words.forEach(word => {
+            const historyItem = document.createElement('p')
+            historyItem.className = 'history-item'
+            historyItem.textContent = word.word
+
+            const spanIcon = document.createElement('span')
+            spanIcon.className = 'span-icon'
+            spanIcon.innerHTML = '<ion-icon name="trash-outline" class="trash"></ion-icon>'
+
+            historyItem.appendChild(spanIcon)
+            history.appendChild(historyItem)
+        })
+    }
 }
