@@ -12,6 +12,7 @@ class RenderView {
         this.toBeRendered = 5
 
         if (words.length > 0) {
+
             const index = words.length - 1;
             this.containerResults.classList.remove('hidden')
 
@@ -121,17 +122,22 @@ class RenderView {
         const history = document.querySelector('.history')
         history.textContent = ''
 
-        words.forEach(word => {
-            const historyItem = document.createElement('p')
-            historyItem.className = 'history-item'
-            historyItem.textContent = word.word
+        if (words && words.length > 0) {
+            words.forEach((word, i) => {
+                const historyItem = document.createElement('p')
+                historyItem.className = 'history-item'
+                historyItem.textContent = word.word
+                historyItem.setAttribute('history-id', i)
 
-            const spanIcon = document.createElement('span')
-            spanIcon.className = 'span-icon'
-            spanIcon.innerHTML = '<ion-icon name="trash-outline" class="trash"></ion-icon>'
+                const spanIcon = document.createElement('span')
+                spanIcon.className = 'span-icon'
+                spanIcon.innerHTML = '<ion-icon name="trash-outline" class="trash"></ion-icon>'
 
-            historyItem.appendChild(spanIcon)
-            history.appendChild(historyItem)
-        })
+                historyItem.appendChild(spanIcon)
+                history.appendChild(historyItem)
+            })
+        } else {
+            history.textContent = 'So empty :('
+        }
     }
 }

@@ -27,4 +27,21 @@ class WordController {
             this.view.renderHistory(this.service.wordList)
         }
     }
+
+    clearHistory() {
+        this.service.wordList = []
+        this.view.renderHistory(this.service.wordList)
+    }
+
+    removeHistoryItem(itemId) {
+        this.service.wordList.splice(itemId, 1)
+        this.view.renderHistory(this.service.wordList)
+    }
+
+    renderWordFromHistory(_word) {
+        const toBeRendered = this.service.wordList.find(w => w.word === _word)
+
+        this.view.renderWords(Array(toBeRendered))
+    }
+
 }
