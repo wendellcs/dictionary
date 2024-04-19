@@ -8,4 +8,12 @@ class WordServices {
     addWord(word) {
         this.wordList.push(word);
     }
+
+    saveToLocalStorage(items) {
+        localStorage.setItem('wordList', JSON.stringify(items))
+    }
+
+    getSavedItemsFromLocalStorage() {
+        return JSON.parse(localStorage.getItem('wordList'))
+    }
 }

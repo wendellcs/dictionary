@@ -3,6 +3,8 @@ class WordController {
         view.renderWords(service.wordList)
         this.service = service
         this.view = view
+
+        this.getSavedItemsFromLocalStorage()
     }
 
     addWord(word) {
@@ -11,6 +13,7 @@ class WordController {
         this.service.addWord(word)
         this.view.renderWords(this.service.wordList)
         this.renderHistory()
+        this.saveToLocalStorage(word)
     }
 
     showMore() {
@@ -31,6 +34,7 @@ class WordController {
     clearHistory() {
         this.service.wordList = []
         this.view.renderHistory(this.service.wordList)
+
     }
 
     removeHistoryItem(itemId) {
@@ -42,6 +46,19 @@ class WordController {
         const toBeRendered = this.service.wordList.find(w => w.word === _word)
 
         this.view.renderWords(Array(toBeRendered))
+    }
+
+    saveToLocalStorage() {
+        const toSave = [...this.service.wordList]
+        // console.log(toSave)
+        this.service.saveToLocalStorage(toSave)
+    }
+
+    getSavedItemsFromLocalStorage() {
+        const items = this.service.getSavedItemsFromLocalStorage()
+        // console.log(items)
+        // this.service.addWord(...items)
+        // this.view.renderHistory(this.service.wordList)
     }
 
 }
