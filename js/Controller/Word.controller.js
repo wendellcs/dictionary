@@ -4,16 +4,16 @@ class WordController {
         this.service = service
         this.view = view
 
-        this.getSavedItemsFromLocalStorage()
+        this.getWordListFromLocalStorage()
     }
 
     addWord(word) {
-        if (!word instanceof WordModel) throw TypeError("Word must be an instance of WordModel")
+        if (!(word instanceof WordModel)) throw TypeError("Word must be an instance of WordModel")
 
         this.service.addWord(word)
         this.view.renderWords(this.service.wordList)
         this.renderHistory()
-        this.saveToLocalStorage(word)
+        this.saveWordListToLocalStorage(word)
     }
 
     showMore() {
@@ -35,30 +35,34 @@ class WordController {
         this.service.wordList = []
         this.view.renderHistory(this.service.wordList)
 
+        this.service.clearLocalStorage()
     }
 
     removeHistoryItem(itemId) {
         this.service.wordList.splice(itemId, 1)
         this.view.renderHistory(this.service.wordList)
+
+        this.saveWordListToLocalStorage(this.service.wordList)
     }
 
     renderWordFromHistory(_word) {
         const toBeRendered = this.service.wordList.find(w => w.word === _word)
-
         this.view.renderWords(Array(toBeRendered))
     }
 
-    saveToLocalStorage() {
+    saveWordListToLocalStorage() {
         const toSave = [...this.service.wordList]
-        // console.log(toSave)
-        this.service.saveToLocalStorage(toSave)
+        this.service.saveWordListToLocalStorage(toSave)
     }
 
-    getSavedItemsFromLocalStorage() {
-        const items = this.service.getSavedItemsFromLocalStorage()
-        // console.log(items)
-        // this.service.addWord(...items)
-        // this.view.renderHistory(this.service.wordList)
-    }
+    getWordListFromLocalStorage() {
+        const toBeRendered = this.service.getWordListFromLocalStorage()
+        if (toBeRendered) {
+            toBeRendered.map((item) => {
+                this.service.addWord(new WordModel(item))
+            })
 
+            this.view.renderHistory(this.service.wordList)
+        }
+    }
 }

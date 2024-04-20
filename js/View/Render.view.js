@@ -11,8 +11,7 @@ class RenderView {
     renderWords(words) {
         this.toBeRendered = 5
 
-        if (words.length > 0) {
-
+        if (words && words.length > 0) {
             const index = words.length - 1;
             this.containerResults.classList.remove('hidden')
 
