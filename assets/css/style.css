@@ -228,6 +228,15 @@ body {
 .container-results-select .option {
   background: #333;
 }
+.container-results .cta-examples {
+  margin: 15px 0;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.container-results .cta-examples:hover {
+  color: #62a0b9;
+  text-decoration: underline;
+}
 
 .container-history {
   transform: translateX(-93%);

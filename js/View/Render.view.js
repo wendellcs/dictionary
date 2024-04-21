@@ -139,4 +139,11 @@ class RenderView {
             history.textContent = 'So empty :('
         }
     }
+
+    renderExamples(examples) {
+        console.log(examples)
+        if (examples && examples.length > 0) {
+
+        }
+    }
 }

@@ -17,7 +17,7 @@ const buttons = {
     btnShowMore: document.querySelector('.btn.show-more'),
     btnClosePopup: document.querySelector('.btn.close-popup'),
     btnOpenHistory: document.querySelector('.open-history'),
-    btnClearHistory: document.querySelector('.btn.clear-history')
+    btnClearHistory: document.querySelector('.btn.clear-history'),
 }
 
 // API
@@ -78,3 +78,9 @@ containers.containerHistory.addEventListener('click', e => {
     }
 })
 
+containers.containerResults.addEventListener('click', e => {
+    if (e.target.classList.contains('cta-examples')) {
+        const word = containers.containerResults.querySelector('.title').textContent
+        wordController.renderExamples(word)
+    }
+})
