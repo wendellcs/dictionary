@@ -11,6 +11,7 @@ const containers = {
 
 const otherHTMLElements = {
     popUp: document.querySelector('.container-popup'),
+    history: document.querySelector('.history')
 }
 
 const buttons = {
@@ -42,6 +43,8 @@ formElements.form.addEventListener('submit', async (e) => {
     try {
         const data = await dictionary.getWord(_word)
 
+        console.log(data)
+
         const word = new WordModel(data)
         wordController.addWord(word)
 
@@ -59,20 +62,20 @@ buttons.btnShowMore.addEventListener('click', () => {
 })
 
 buttons.btnOpenHistory.addEventListener('click', () => {
-    wordController.toggleHistoryMenuVisibility(document.querySelector('.container-history'))
+    renderView.toggleHistoryMenuVisibility()
 })
 
 buttons.btnClearHistory.addEventListener('click', () => {
     wordController.clearHistory()
 })
 
-containers.containerHistory.addEventListener('click', e => {
+otherHTMLElements.history.addEventListener('click', e => {
     if (e.target.classList.contains('trash')) {
-        const parent = e.target.closest('.history-item')
+        const parent = e.target.closest('.history-word-box')
         wordController.removeHistoryItem(parent.getAttribute('history-id'))
     }
 
-    if (e.target.classList.contains('history-item')) {
+    if (e.target.classList.contains('history-word-box-item')) {
         const word = e.target.textContent
         wordController.renderWordFromHistory(word)
     }
@@ -84,3 +87,4 @@ containers.containerResults.addEventListener('click', e => {
         wordController.renderExamples(word)
     }
 })
+

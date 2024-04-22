@@ -113,30 +113,37 @@ class RenderView {
         this.getDefinitionsReadyToBeRendered()
     }
 
-    toggleHistoryMenuVisibility(menu) {
-        menu.classList.toggle('open')
+    toggleHistoryMenuVisibility() {
+        const containerHistory = document.querySelector('.container-history')
+        const history = document.querySelector('.history')
+        containerHistory.classList.toggle('open')
+        history.classList.toggle('open')
     }
 
     renderHistory(words) {
-        const history = document.querySelector('.history')
+        const history = document.querySelector('.history-items')
         history.textContent = ''
 
         if (words && words.length > 0) {
             words.forEach((word, i) => {
+                const historyItemBox = document.createElement('div')
+                historyItemBox.className = 'history-word-box'
+                historyItemBox.setAttribute('history-id', i)
+
                 const historyItem = document.createElement('p')
-                historyItem.className = 'history-item'
+                historyItem.className = 'history-word-box-item'
                 historyItem.textContent = word.word
-                historyItem.setAttribute('history-id', i)
 
-                const spanIcon = document.createElement('span')
-                spanIcon.className = 'span-icon'
-                spanIcon.innerHTML = '<ion-icon name="trash-outline" class="trash"></ion-icon>'
+                historyItemBox.appendChild(historyItem)
 
-                historyItem.appendChild(spanIcon)
-                history.appendChild(historyItem)
+                const icon = document.createElement('span')
+                icon.innerHTML = '<ion-icon name="trash-outline" class="trash"></ion-icon>'
+
+                historyItemBox.appendChild(icon)
+                history.appendChild(historyItemBox)
             })
         } else {
-            history.textContent = 'So empty :('
+            history.textContent = 'So empty...'
         }
     }
 

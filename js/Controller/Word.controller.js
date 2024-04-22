@@ -27,16 +27,8 @@ class WordController {
     showMore() {
         this.view.showMore()
     }
-    /*
-        * When the user clicks on the menu button, the history menu will open.
-        * It will close when the user clicks on it again.
-    */
-    toggleHistoryMenuVisibility(menu) {
-        if (!menu) throw new Error('The history menu is needed')
-        this.view.toggleHistoryMenuVisibility(menu)
-    }
 
-    // Renders the history if the word list is not empty.
+    // Renders the history
     renderHistory() {
         if (this.service.wordList.length > 0) {
             this.view.renderHistory(this.service.wordList)
