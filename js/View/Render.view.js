@@ -25,18 +25,18 @@ class RenderView {
             this.index = index
 
             select.textContent = ''
+
             // Get all word classes based on the chosen word
-            const classes = words[index].wordClasses.map((_class) => _class)
+            const classes = []
+            for (let wc in words[index].definitionsByWordClass) {
+                classes.push(wc)
+            }
+
             // Update the title
             title.textContent = words[index].word
 
-            // Remove any repeated word class
-            const toBeRenderedClasses = classes.filter((_class, i) => {
-                return classes.indexOf(_class) === i
-            })
-
             // Create the options based on the word classes of the chosen word.
-            toBeRenderedClasses.forEach((_class) => {
+            classes.forEach((_class) => {
                 const option = document.createElement('option');
                 option.value = _class;
                 option.innerText = _class;
@@ -48,42 +48,17 @@ class RenderView {
             select.addEventListener('change', () => {
                 wordClass.textContent = select.value
                 this.toBeRendered = 5
-                this.getDefinitionsReadyToBeRendered()
+                this.updateDefinitions()
             })
-            this.getDefinitionsReadyToBeRendered()
+            this.updateDefinitions()
         }
     }
 
-    getDefinitionsReadyToBeRendered() {
+    updateDefinitions() {
         const _class = this.select.value
-        const wordClassIndex = []
 
-        // Get the indexes where the words are repeated
-        this.words[this.index].wordClasses.forEach((_wordClass, i) => {
-            if (_wordClass == _class) {
-                wordClassIndex.push(i)
-            }
-        })
-
-        // Verify whether there are multiple definitions for the same word
-        if (wordClassIndex.length > 1) {
-            const multipleResults = []
-
-            // Insert the repeated definitions into the same array
-            wordClassIndex.forEach(i => {
-                multipleResults.push(this.words[this.index].definitions[i])
-            })
-
-            // Make an unique array from the multipleResults array
-            const rendering = []
-            multipleResults.map(obj => { obj.map(def => { rendering.push(def) }) })
-
-            this.renderDefinitions(rendering)
-        } else {
-            const toBeRenderedDefinition = this.words[this.index].definitions[wordClassIndex]
-
-            this.renderDefinitions(toBeRenderedDefinition)
-        }
+        const toBeRenderedDefinition = this.words[this.index].definitionsByWordClass[_class]
+        this.renderDefinitions(toBeRenderedDefinition)
     }
 
     renderDefinitions(definitionsList) {
@@ -99,7 +74,7 @@ class RenderView {
             if (definitionsList[i]) {
                 const p = document.createElement('p')
                 p.className = 'definition'
-                p.textContent = definitionsList[i].definition
+                p.textContent = definitionsList[i]
                 results.appendChild(p)
             } else {
                 btnShowMore.classList.add('hidden')
@@ -110,7 +85,7 @@ class RenderView {
 
     showMore() {
         this.toBeRendered += 5
-        this.getDefinitionsReadyToBeRendered()
+        this.updateDefinitions()
     }
 
     toggleHistoryMenuVisibility() {
@@ -147,10 +122,17 @@ class RenderView {
         }
     }
 
-    renderExamples(examples) {
-        console.log(examples)
-        if (examples && examples.length > 0) {
+    renderExamples(_word, wordList) {
+        if (_word && wordList.length > 0) {
+            const wordClass = document.querySelector('.container-results-select').value
+            const terms = wordList.find((w) => w.word === _word)
+            const index = terms.wordClasses.indexOf(wordClass)
 
+            const examplesToBeRendered = terms.examples[index]
+
+            if (examplesToBeRendered.length > 0) {
+
+            }
         }
     }
 }

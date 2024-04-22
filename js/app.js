@@ -43,8 +43,6 @@ formElements.form.addEventListener('submit', async (e) => {
     try {
         const data = await dictionary.getWord(_word)
 
-        console.log(data)
-
         const word = new WordModel(data)
         wordController.addWord(word)
 
