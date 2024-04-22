@@ -20,11 +20,6 @@ class WordController {
         this.view.showMore()
     }
 
-    toggleHistoryMenuVisibility(menu) {
-        if (!menu) throw new Error('The history menu is needed')
-        this.view.toggleHistoryMenuVisibility(menu)
-    }
-
     renderHistory() {
         if (this.service.wordList.length > 0) {
             this.view.renderHistory(this.service.wordList)

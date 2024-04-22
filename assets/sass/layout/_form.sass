@@ -2,42 +2,40 @@
 @use '../base/_variables'
 
 .container-form
-    @include utilities.container-style
+    border-radius: 20px
+    padding: 30px 10px
     margin-top: 50px
-    width: 80%
+    width: 70%
     max-width: 600px
-
-    h1
-        text-align: center
-        margin-bottom: 40px
+    background-color: variables.$secondary-bg-color
+    border: 1px solid variables.$primary-color
 
     .form
-        margin: 20px 0
+        margin: 20px auto
+        width: 60%
 
         .form-box
             display: flex
-            width: 80%
             margin: 10px auto
             flex-direction: column
 
             label
+                text-align: center
                 font-size: 1.8rem
+                letter-spacing: 1px
+                margin-bottom: 5px
 
             input
                 margin-top: 5px
-                height: 35px
-                border: none
+                height: 40px
                 padding-left: 5px
-                font-size: 1.5rem
-                border-radius: 10px
+                font-size: 1.6rem
+                border-radius: 15px
+                border: 2px solid variables.$primary-color
+                padding-left: 10px
+                font-family: 'Lato', sans-serif
+                letter-spacing: 1px
 
-    .qtd-cards
-        display: flex
-        align-items: center
-        gap: 5px
-        font-size: 2rem
-        margin: auto
-        width: 85px
-
-        .qtd
-            font-size: 2.5rem
+                &:focus
+                    outline: none
+                    border-color: variables.$secondary-color
