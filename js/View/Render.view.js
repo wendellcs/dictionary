@@ -147,10 +147,18 @@ class RenderView {
         }
     }
 
-    renderExamples(examples) {
-        console.log(examples)
-        if (examples && examples.length > 0) {
+    renderExamples(_word, wordList) {
 
+        if (_word && wordList.length > 0) {
+            const wordClass = document.querySelector('.container-results-select').value
+            const terms = wordList.find((w) => w.word === _word)
+            const index = terms.wordClasses.indexOf(wordClass)
+
+            const examplesToBeRendered = terms.examples[index]
+
+            if (examplesToBeRendered.length > 0) {
+
+            }
         }
     }
 }
