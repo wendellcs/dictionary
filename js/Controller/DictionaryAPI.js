@@ -4,54 +4,37 @@ class DictionaryAPI {
 
         try {
             const response = await axios.get(`https://api.dictionaryapi.dev/api/v2/entries/en/${word}`)
-            const data = response.data
+            const data = response.data[0]
 
-            const meanings = data[0].meanings
-            const definitionsSynonymsAntonyms = meanings.map(meaning => meaning.definitions)
-            const wordClasses = meanings.map(mean => mean.partOfSpeech)
+            const meanings = data.meanings;
+            const wordDefinitions = {};
 
-            const definitions = this.removeSynonymsAndAntonyms(definitionsSynonymsAntonyms)
-            const examples = this.getExamples(definitions)
+            meanings.forEach(meaning => {
+                const wordClass = meaning.partOfSpeech;
+                const definitions = meaning.definitions.map(definition => definition.definition);
+
+                if (!wordDefinitions[wordClass]) {
+                    wordDefinitions[wordClass] = [];
+                }
+
+                wordDefinitions[wordClass].push(...definitions);
+            });
+
+            const phonetic = data.phonetic;
+            const phoneticAudios = data.phonetics;
 
             const results = {
                 word,
-                wordClasses,
-                definitions,
-                examples
+                definitionsByWordClass: wordDefinitions,
+                phonetic,
+                phoneticAudios
             }
 
-            return results
+            console.log(results)
+
+            return results;
         } catch (err) {
-            return null
+            return null;
         }
     }
-
-    removeSynonymsAndAntonyms(definitions) {
-        definitions.map(def => {
-            for (let i = 0; i < def.length; i++) {
-
-                delete def[i].synonyms
-                delete def[i].antonyms
-            }
-        })
-
-        return definitions
-    }
-
-    getExamples(definitions) {
-        const results = []
-        definitions.map(def => {
-            const classExamples = []
-            for (let i = 0; i < def.length; i++) {
-                if (def[i].example) {
-                    def[i].example
-                    classExamples.push(def[i].example)
-                }
-            }
-            results.push(classExamples)
-        })
-        return results
-    }
 }
-
-/* Criar um texto escrito loading quando algo estiver carregando ( Ser mais criativo que isso) */
