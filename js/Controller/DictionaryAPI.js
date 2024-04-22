@@ -1,6 +1,6 @@
 class DictionaryAPI {
     async getWord(word) {
-        if (!word) throw new Error('Plesa, insert a valid word')
+        if (!word) throw new Error('Please, insert a valid word')
 
         try {
             const response = await axios.get(`https://api.dictionaryapi.dev/api/v2/entries/en/${word}`)

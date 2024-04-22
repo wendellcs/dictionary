@@ -18,7 +18,7 @@ const buttons = {
     btnShowMore: document.querySelector('.btn.show-more'),
     btnClosePopup: document.querySelector('.btn.close-popup'),
     btnOpenHistory: document.querySelector('.open-history'),
-    btnClearHistory: document.querySelector('.btn.clear-history')
+    btnClearHistory: document.querySelector('.btn.clear-history'),
 }
 
 // API
@@ -42,6 +42,8 @@ formElements.form.addEventListener('submit', async (e) => {
 
     try {
         const data = await dictionary.getWord(_word)
+
+        console.log(data)
 
         const word = new WordModel(data)
         wordController.addWord(word)
@@ -79,5 +81,10 @@ otherHTMLElements.history.addEventListener('click', e => {
     }
 })
 
-
+containers.containerResults.addEventListener('click', e => {
+    if (e.target.classList.contains('cta-examples')) {
+        const word = containers.containerResults.querySelector('.title').textContent
+        wordController.renderExamples(word)
+    }
+})
 

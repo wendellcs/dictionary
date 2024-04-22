@@ -1,7 +1,5 @@
 class WordServices {
     constructor(word) {
-        if (!word instanceof WordModel) throw TypeError("word must be an instance of WordModel");
-
         this.wordList = []
     }
 
@@ -9,11 +7,15 @@ class WordServices {
         this.wordList.push(word);
     }
 
-    saveToLocalStorage(items) {
+    saveWordListToLocalStorage(items) {
         localStorage.setItem('wordList', JSON.stringify(items))
     }
 
-    getSavedItemsFromLocalStorage() {
+    getWordListFromLocalStorage() {
         return JSON.parse(localStorage.getItem('wordList'))
+    }
+
+    clearLocalStorage() {
+        localStorage.removeItem('wordList')
     }
 }
