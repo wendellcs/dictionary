@@ -30,8 +30,6 @@ class DictionaryAPI {
                 phoneticAudios
             }
 
-            console.log(results)
-
             return results;
         } catch (err) {
             return null;
