@@ -15,7 +15,6 @@ body {
   background: #232429;
   color: #FCFFFC;
   height: 100%;
-  position: relative;
 }
 
 @keyframes slide-popup {
@@ -166,11 +165,38 @@ body {
 .container-results.hidden {
   display: none;
 }
-.container-results .title {
+.container-results-details .title {
   margin: 20px 0;
   font-size: 2.8rem;
   text-transform: uppercase;
   letter-spacing: 5px;
+}
+.container-results-details .container-results-select {
+  width: 150px;
+  height: 40px;
+  margin: 20px 0;
+  font-size: 2.2rem;
+  text-align: center;
+  background: transparent;
+  border-radius: 8px;
+  border-color: #FFF;
+  color: #FFF;
+  appearance: none;
+  cursor: pointer;
+  letter-spacing: 2px;
+  font-weight: bolder;
+}
+.container-results-details .container-results-select .option {
+  background: #333;
+}
+.container-results-details .word-details .cta-examples {
+  margin: 15px 0;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.container-results-details .word-details .cta-examples:hover {
+  color: #62a0b9;
+  text-decoration: underline;
 }
 .container-results .definition {
   margin: 20px 0;
@@ -193,33 +219,6 @@ body {
   position: absolute;
   border-radius: 50%;
   left: 15px;
-}
-.container-results-select {
-  width: 150px;
-  height: 40px;
-  margin: 20px 0;
-  font-size: 2.2rem;
-  text-align: center;
-  background: transparent;
-  border-radius: 8px;
-  border-color: #FFF;
-  color: #FFF;
-  appearance: none;
-  cursor: pointer;
-  letter-spacing: 2px;
-  font-weight: bolder;
-}
-.container-results-select .option {
-  background: #333;
-}
-.container-results .cta-examples {
-  margin: 15px 0;
-  cursor: pointer;
-  transition: 0.3s;
-}
-.container-results .cta-examples:hover {
-  color: #62a0b9;
-  text-decoration: underline;
 }
 
 .container-history {

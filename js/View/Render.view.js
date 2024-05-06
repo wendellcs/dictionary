@@ -18,7 +18,7 @@ class RenderView {
             // Get important HTML elements
             const title = this.containerResults.querySelector('.title')
             const select = this.containerResults.querySelector('.container-results-select')
-            const wordClass = this.containerResults.querySelector('.word-class')
+            const spanPhonetic = this.containerResults.querySelector('.phonetic')
 
             this.words = words
             this.select = select
@@ -31,6 +31,8 @@ class RenderView {
             for (let wc in words[index].definitionsByWordClass) {
                 classes.push(wc)
             }
+
+            spanPhonetic.textContent = words[index].phonetic
 
             // Update the title
             title.textContent = words[index].word
@@ -46,7 +48,6 @@ class RenderView {
 
             // Update the definitions once the user has chosen a different word class
             select.addEventListener('change', () => {
-                wordClass.textContent = select.value
                 this.toBeRendered = 5
                 this.updateDefinitions()
             })
@@ -126,12 +127,14 @@ class RenderView {
         if (_word && wordList.length > 0) {
             const wordClass = document.querySelector('.container-results-select').value
             const terms = wordList.find((w) => w.word === _word)
-            const index = terms.wordClasses.indexOf(wordClass)
+
+            console.log(terms.phonetic)
+
 
             const examplesToBeRendered = terms.examples[index]
 
             if (examplesToBeRendered.length > 0) {
-
+                console.log(examplesToBeRendered)
             }
         }
     }

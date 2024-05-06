@@ -10,11 +10,41 @@
     &.hidden
         display: none
 
-    .title
-        margin: 20px 0
-        font-size: 2.8rem
-        text-transform: uppercase
-        letter-spacing: 5px
+    &-details
+        .title
+            margin: 20px 0
+            font-size: 2.8rem
+            text-transform: uppercase
+            letter-spacing: 5px
+
+        .container-results-select
+            width: 150px
+            height: 40px
+            margin: 20px 0
+            font-size: 2.2rem
+            text-align: center
+            background: transparent
+            border-radius: 8px
+            border-color: #FFF
+            color: #FFF
+            appearance: none
+            cursor: pointer
+            letter-spacing: 2px
+            font-weight: bolder
+
+            .option
+                background: #333
+
+        .word-details
+
+            .cta-examples
+                margin: 15px 0
+                cursor: pointer
+                transition: .3s
+
+                &:hover
+                    color: #62a0b9
+                    text-decoration: underline
 
     .definition
         margin: 20px 0
@@ -37,30 +67,3 @@
             position: absolute
             border-radius: 50%
             left: 15px
-
-    &-select
-        width: 150px
-        height: 40px
-        margin: 20px 0
-        font-size: 2.2rem
-        text-align: center
-        background: transparent
-        border-radius: 8px
-        border-color: #FFF
-        color: #FFF
-        appearance: none
-        cursor: pointer
-        letter-spacing: 2px
-        font-weight: bolder
-
-        .option
-            background: #333
-
-    .cta-examples
-        margin: 15px 0
-        cursor: pointer
-        transition: .3s
-
-        &:hover
-            color: #62a0b9
-            text-decoration: underline
