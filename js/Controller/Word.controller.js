@@ -1,6 +1,5 @@
 class WordController {
     constructor(service, view) {
-        view.renderWords(service.wordList)
         this.service = service
         this.view = view
 
@@ -17,7 +16,6 @@ class WordController {
 
         this.service.addWord(word)
         this.view.renderWords(this.service.wordList)
-        this.renderHistory()
         this.saveWordListToLocalStorage(word)
     }
     /*
@@ -63,12 +61,6 @@ class WordController {
         this.view.renderWords(Array(toBeRendered))
     }
 
-    // Saves the word list to localStorage.
-    saveWordListToLocalStorage() {
-        const toSave = [...this.service.wordList]
-        this.service.saveWordListToLocalStorage(toSave)
-    }
-
     /*
         * Retrieves the list of words saved in localStorage, transforms each word 
         * into a WordModel instance, and updates the history view with the new word list.
@@ -82,6 +74,12 @@ class WordController {
 
             this.view.renderHistory(this.service.wordList)
         }
+    }
+
+    // Saves the word list to localStorage.
+    saveWordListToLocalStorage() {
+        const toSave = [...this.service.wordList]
+        this.service.saveWordListToLocalStorage(toSave)
     }
 
     renderExamples(_word) {
