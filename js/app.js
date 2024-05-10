@@ -60,6 +60,9 @@ buttons.btnShowMore.addEventListener('click', () => {
 })
 
 buttons.btnOpenHistory.addEventListener('click', () => {
+    if (!containers.containerHistory.classList.contains('open')) {
+        wordController.renderHistory()
+    }
     renderView.toggleHistoryMenuVisibility()
 })
 
