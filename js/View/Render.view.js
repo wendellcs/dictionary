@@ -123,11 +123,16 @@ class RenderView {
         }
     }
 
-    renderExamples(examples) {
+    renderExamples(word, examples) {
         const container = this.containerResults.querySelector('.select-results')
         container.textContent = ''
 
-        examples.forEach(ex => {
+        const text = document.createElement('h2')
+        text.textContent = 'Here are some examples'
+        text.className = 'text-examples'
+        container.appendChild(text)
+
+        examples.forEach((ex, i) => {
             const p = document.createElement('p')
             p.className = 'example'
             p.textContent = ex

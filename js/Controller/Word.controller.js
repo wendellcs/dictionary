@@ -90,7 +90,7 @@ class WordController {
             const examplesToBeRendered = baseWord.examples[_wordClass]
 
             if (examplesToBeRendered.length > 0) {
-                this.view.renderExamples(examplesToBeRendered)
+                this.view.renderExamples(_word, examplesToBeRendered)
             }
         }
     }

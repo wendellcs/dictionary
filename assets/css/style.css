@@ -198,7 +198,7 @@ body {
   color: #62a0b9;
   text-decoration: underline;
 }
-.container-results .definition {
+.container-results .definition, .container-results .example {
   margin: 20px 0;
   padding-left: 40px;
   line-height: 110%;
@@ -207,11 +207,11 @@ body {
   text-align: left;
   position: relative;
 }
-.container-results .definition:first-of-type {
+.container-results .definition:first-of-type, .container-results .example:first-of-type {
   padding-top: 18px;
   border-top: 1px solid #fff;
 }
-.container-results .definition:before {
+.container-results .definition:before, .container-results .example:before {
   content: "";
   width: 15px;
   height: 15px;
@@ -219,6 +219,17 @@ body {
   position: absolute;
   border-radius: 50%;
   left: 15px;
+}
+.container-results .text-examples {
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 1px solid white;
+}
+.container-results .example:first-of-type {
+  border: none;
+}
+.container-results .example:before {
+  background-color: red;
 }
 
 .container-history {
