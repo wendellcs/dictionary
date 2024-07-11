@@ -39,8 +39,8 @@ class DictionaryAPI {
                 word,
                 definitionsByWordClass: wordDefinitions,
                 examples,
-                phonetic,
-                phoneticAudios,
+                // phonetic,
+                // phoneticAudios,
             }
 
             return results;

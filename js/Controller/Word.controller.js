@@ -87,8 +87,6 @@ class WordController {
     renderExamples(_word, _wordClass) {
         if (_word && _wordClass) {
             const baseWord = this.service.wordList.find(w => w.word == _word)
-            console.log(baseWord.definitionsByWordClass[_wordClass])
-            console.log(baseWord)
 
 
         }
