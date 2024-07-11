@@ -87,8 +87,11 @@ class WordController {
     renderExamples(_word, _wordClass) {
         if (_word && _wordClass) {
             const baseWord = this.service.wordList.find(w => w.word == _word)
+            const examplesToBeRendered = baseWord.examples[_wordClass]
 
-
+            if (examplesToBeRendered.length > 0) {
+                this.view.renderExamples(examplesToBeRendered)
+            }
         }
     }
 }

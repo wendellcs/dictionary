@@ -124,6 +124,14 @@ class RenderView {
     }
 
     renderExamples(examples) {
-        console.log(examples)
+        const container = this.containerResults.querySelector('.select-results')
+        container.textContent = ''
+
+        examples.forEach(ex => {
+            const p = document.createElement('p')
+            p.className = 'example'
+            p.textContent = ex
+            container.appendChild(p)
+        })
     }
 }
