@@ -123,19 +123,7 @@ class RenderView {
         }
     }
 
-    renderExamples(_word, wordList) {
-        if (_word && wordList.length > 0) {
-            const wordClass = document.querySelector('.container-results-select').value
-            const terms = wordList.find((w) => w.word === _word)
-
-            console.log(terms.phonetic)
-
-
-            const examplesToBeRendered = terms.examples[index]
-
-            if (examplesToBeRendered.length > 0) {
-                console.log(examplesToBeRendered)
-            }
-        }
+    renderExamples(examples) {
+        console.log(examples)
     }
 }

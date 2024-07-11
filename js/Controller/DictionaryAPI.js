@@ -9,16 +9,28 @@ class DictionaryAPI {
             const meanings = data.meanings;
             const wordDefinitions = {};
 
+            const examples = {}
+
             meanings.forEach(meaning => {
                 const wordClass = meaning.partOfSpeech;
                 const definitions = meaning.definitions.map(definition => definition.definition);
+
+                const wordExamples = meaning.definitions.filter(definition => definition.example !== undefined).map((definition) => definition.example)
+
+                if (!examples[wordClass]) {
+                    examples[wordClass] = []
+                }
+
+                if (wordExamples) {
+                    examples[wordClass].push(...wordExamples)
+                }
 
                 if (!wordDefinitions[wordClass]) {
                     wordDefinitions[wordClass] = [];
                 }
 
                 wordDefinitions[wordClass].push(...definitions);
-            });
+            })
 
             const phonetic = data.phonetic;
             const phoneticAudios = data.phonetics;
@@ -26,11 +38,13 @@ class DictionaryAPI {
             const results = {
                 word,
                 definitionsByWordClass: wordDefinitions,
+                examples,
                 phonetic,
-                phoneticAudios
+                phoneticAudios,
             }
 
             return results;
+
         } catch (err) {
             return null;
         }

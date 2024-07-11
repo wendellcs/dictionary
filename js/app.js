@@ -82,7 +82,8 @@ otherHTMLElements.history.addEventListener('click', e => {
 containers.containerResults.addEventListener('click', e => {
     if (e.target.classList.contains('cta-examples')) {
         const word = containers.containerResults.querySelector('.title').textContent
-        wordController.renderExamples(word)
+        const wordClass = containers.containerResults.querySelector('.container-results-select').value
+        wordController.renderExamples(word, wordClass)
     }
 })
 
