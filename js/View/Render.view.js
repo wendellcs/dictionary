@@ -123,7 +123,7 @@ class RenderView {
         }
     }
 
-    renderExamples(word, examples) {
+    renderExamples(examples) {
         const container = this.containerResults.querySelector('.select-results')
         container.textContent = ''
 
@@ -132,7 +132,7 @@ class RenderView {
         text.className = 'text-examples'
         container.appendChild(text)
 
-        examples.forEach((ex, i) => {
+        examples.forEach((ex) => {
             const p = document.createElement('p')
             p.className = 'example'
             p.textContent = ex
